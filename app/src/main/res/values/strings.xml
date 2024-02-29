@@ -1,0 +1,24 @@
+<resources>
+    <string name="registrar">Registrar</string>
+    <string name="editar">Editar</string>
+    <string name="salir">Salir</string>
+    <string name="configuracion">Configuracion</string>
+    <string name="pantallaPrincipal">Gestor de tareas</string>
+    <string name="titulo">Titulo</string>
+    <string name="descripcion">Descripcion</string>
+    <string name="añadirTarea">Añadir Tarea</string>
+    <string name="editarTarea">Editar Tarea</string>
+    <string name="tituloTarea">El titulo de la tarea</string>
+    <string name="descripcionTarea">La descripcion de la tarea</string>
+    <string name="guardarTarea">Guardar tarea</string>
+    <string name="GuardadoCorrectamente">Guardado correctamente</string>
+    <string name="tareas">Tareas</string>
+    <string name="castellano">Castellano</string>
+    <string name="english">Ingles</string>
+    <string name="volver">Volver</string>
+    <string name="web">Ayuda</string>
+    <string name="app_name">FitFlow</string>
+    <string name="fecha">Fecha</string>
+    <string name="descargar">Descargar</string>
+    <string name="eliminarTarea">Eliminar</string>
+</resources>
