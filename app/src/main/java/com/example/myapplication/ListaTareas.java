@@ -45,6 +45,7 @@ public class ListaTareas extends AppCompatActivity {
                         Intent intent = new Intent(ListaTareas.this, Mostrar.class);
                         String valor = listaTareas.get(position);
                         intent.putExtra(Mostrar.EXTRA_TAG, valor);
+                        finish();
                         startActivity(intent);
                     }
                 }));

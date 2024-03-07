@@ -14,7 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class Editar extends AppCompatActivity {
 
-    public static final String EXTRA_TAG = "TITULO";
+    public static final String EXTRA_TAG = "EJERCICIO";
     public static final String EXTRA_TAG2 = "FECHA";
     private EditText fechaInput;
     private EditText tituloInput;
@@ -37,6 +37,7 @@ public class Editar extends AppCompatActivity {
 
         Intent intent = getIntent();
         intentStringTitulo = intent.getStringExtra(EXTRA_TAG);
+        Log.d("Eneko", intentStringTitulo + " intentStringTitulo");
         intentStringFecha = intent.getStringExtra(EXTRA_TAG2);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editar);
@@ -65,9 +66,6 @@ public class Editar extends AppCompatActivity {
                             tituloInput.getText().toString(),
                             descripcionInput.getText().toString());
                     finish();
-                    finish();
-                    Intent intent = new Intent(this, Mostrar.class);
-                    startActivity(intent);
                 } else {
                     Toast.makeText(this.getApplicationContext(), "Ya hay información asociada a ese nombre", Toast.LENGTH_SHORT).show();
                 }
@@ -82,11 +80,9 @@ public class Editar extends AppCompatActivity {
     //Boton de eliminar para que haga el delete de esa linea y vuelva pa atras. Si es la ultima no habra nada en el listview
     public void eliminar(View view){
         try {
+            Log.d("Eneko", intentStringTitulo + " intentStringTitulo2");
             dbController.eliminar(intentStringFecha, intentStringTitulo);
             finish();
-            finish();
-            Intent intent = new Intent(this, Mostrar.class);
-            startActivity(intent);
         } catch (Exception e){
             Toast.makeText(this.getApplicationContext(), "No se ha podido guardar", Toast.LENGTH_SHORT).show();
         }

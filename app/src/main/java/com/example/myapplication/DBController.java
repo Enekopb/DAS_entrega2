@@ -116,7 +116,7 @@ public class DBController extends SQLiteOpenHelper {
             Log.d("Eneko", "entra en eliminar titulo: "+tituloAnt + " fecha: " + fechaAnt);
             database = this.getWritableDatabase();
             database.execSQL("DELETE FROM " + TABLA +
-                    "' WHERE " + TITULO + " = '" + tituloAnt +
+                    " WHERE " + TITULO + " = '" + tituloAnt +
                     "' AND " + FECHA + " = '" + fechaAnt + "';");
             return true;
         } catch (Exception e){
