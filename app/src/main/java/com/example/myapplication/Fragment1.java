@@ -9,7 +9,6 @@ import android.content.res.Configuration;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,40 +17,32 @@ import android.widget.Button;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
-import com.example.myapplication.ListaTareas;
-import com.example.myapplication.R;
-import com.example.myapplication.Registrar;
-
 import java.util.Locale;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class Fragment1 extends Fragment {
-
-    private Button alert;
-
-    public Fragment1() {
-        // Required empty public constructor
-    }
+    private static final String PREFERENCIAS_IDIOMA = "config_idioma";
+    private static final String PREFERENCIAS_TEMA = "config_tema";
+    private static final String IDIOMA_PREF_KEY = "idioma";
+    private static final String TEMA_PREF_KEY = "tema";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment1, container, false);
+        Button alert = view.findViewById(R.id.salir);
 
-        // Obtener el tema guardado de las preferencias compartidas
-        SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("config_tema", MODE_PRIVATE);
+        SharedPreferences sharedPreferences = requireActivity().getSharedPreferences(PREFERENCIAS_TEMA, MODE_PRIVATE);
         String temaGuardado = sharedPreferences.getString("tema", "DEFAULT");
 
         // Aplicar el tema correspondiente
         if (temaGuardado.equals("DEFAULT")) {
-            // Aplicar tema claro
             requireActivity().setTheme(R.style.AppThemeLight);
             view.setBackgroundColor(Color.WHITE);
         } else {
-            // Aplicar tema oscuro
             requireActivity().setTheme(R.style.AppThemeDark);
             view.setBackgroundColor(Color.BLACK);
         }
@@ -64,7 +55,6 @@ public class Fragment1 extends Fragment {
         configuration.setLocale(nuevoLocale);
         requireActivity().getResources().updateConfiguration(configuration, requireActivity().getBaseContext().getResources().getDisplayMetrics());
 
-        alert = view.findViewById(R.id.salir);
         alert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

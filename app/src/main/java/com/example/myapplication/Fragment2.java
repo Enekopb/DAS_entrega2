@@ -43,8 +43,19 @@ public class Fragment2 extends Fragment {
             requireActivity().setTheme(R.style.AppThemeDark);
         }
 
+        sharedPreferences = requireActivity().getSharedPreferences("config_idioma", MODE_PRIVATE);
+        String idiomaGuardado = sharedPreferences.getString("idioma", "values");
+        Locale nuevoLocale = new Locale(idiomaGuardado);
+        Locale.setDefault(nuevoLocale);
+        Configuration configuration = requireActivity().getBaseContext().getResources().getConfiguration();
+        configuration.setLocale(nuevoLocale);
+        requireActivity().getResources().updateConfiguration(configuration, requireActivity().getBaseContext().getResources().getDisplayMetrics());
+
+
         @SuppressLint({"MissingInflatedId", "LocalSuppress"}) Button button1 = view.findViewById(R.id.english);
         @SuppressLint({"MissingInflatedId", "LocalSuppress"}) Button button2 = view.findViewById(R.id.castellano);
+        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) Button button3 = view.findViewById(R.id.claro);
+        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) Button button4 = view.findViewById(R.id.Oscuro);
 
         // Listener para el botón en inglés
         button1.setOnClickListener(new View.OnClickListener() {
@@ -62,19 +73,18 @@ public class Fragment2 extends Fragment {
             }
         });
 
-        cambio = view.findViewById(R.id.switch1);
-
-        cambio.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-
-            // Verificar tema actual
+        // Listener para el botón en castellano
+        button3.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                Log.d("Eneko", "Cambio boton");
-                if (cambio.isChecked()) {
-                    updateTema("DARK", container);
-                } else {
-                    updateTema("DEFAULT", container);
-                }
+            public void onClick(View view) { updateTema("DEFAULT", container);
+            }
+        });
+
+        // Listener para el botón en castellano
+        button4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                updateTema("DARK", container);
             }
         });
 
@@ -104,8 +114,10 @@ public class Fragment2 extends Fragment {
         Log.d("Tema", sp.getString("tema", "DEFAULT"));
         if (key.equals("DEFAULT")) {
             // Se guarda al hacer el siguiente onCreate de la nueva actividad, no se aplica seguido.
+            requireActivity().setTheme(R.style.AppThemeLight);
             view.setBackgroundColor(Color.WHITE);
         } else {
+            requireActivity().setTheme(R.style.AppThemeDark);
             view.setBackgroundColor(Color.BLACK);
         }
     }

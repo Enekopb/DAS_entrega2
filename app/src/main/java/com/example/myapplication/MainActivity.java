@@ -26,6 +26,18 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if(savedInstanceState == null){
+            SharedPreferences sharedPreferences = getSharedPreferences("config_idioma", MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString("idioma", "values");
+            editor.apply();
+
+            SharedPreferences sp = getSharedPreferences("config_tema", MODE_PRIVATE);
+            SharedPreferences.Editor e = sp.edit();
+            e.putString("tema", "DEFAULT");
+            e.apply();
+        }
         setContentView(R.layout.activity_main);
 
         container = findViewById(R.id.container);

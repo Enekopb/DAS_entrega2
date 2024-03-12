@@ -21,6 +21,6 @@
     <string name="fecha">Fecha</string>
     <string name="descargar">Descargar</string>
     <string name="eliminarTarea">Eliminar</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="oscuro" >Oscuro</string>
+    <string name="claro">Claro</string>
 </resources>

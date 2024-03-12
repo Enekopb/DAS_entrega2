@@ -22,4 +22,6 @@
     <string name="fecha">Date</string>
     <string name="descargar">Download</string>
     <string name="eliminarTarea">Delete</string>
+    <string name="oscuro">Dark</string>
+    <string name="claro">Light</string>
 </resources>
