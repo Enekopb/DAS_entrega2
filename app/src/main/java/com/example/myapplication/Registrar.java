@@ -1,8 +1,13 @@
 package com.example.myapplication;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -13,6 +18,10 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
+import androidx.core.content.ContextCompat;
 
 import java.util.Date;
 
@@ -46,25 +55,38 @@ public class Registrar extends AppCompatActivity {
         SQLiteDatabase db = dbController.getWritableDatabase();
     }
 
-    public void guardar(View view){
+    public void guardar(View view) {
         try {
             if (!isFinishing()) {
                 // Que ningun campo este vacio
                 if (!(tituloInput.getText().toString().trim().isEmpty() || descripcionInput.getText().toString().trim().isEmpty() || fechaInput.getText().toString().trim().isEmpty())) {
                     boolean result = dbController.addData(fechaInput.getText().toString(), tituloInput.getText().toString(), descripcionInput.getText().toString());
                     if (result) {
-                        AlertDialog.Builder alert = new AlertDialog.Builder(this);
-                        Log.e("DB-CONTROLLER:", "Se ha podido guardar");
-                        alert.setTitle("Guardado correctamente");
-                        alert.setMessage("La información está en la base de datos!");
-                        alert.show();
-                        Handler handler = new Handler();
-                        handler.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                finish();
-                            }
-                        }, 5000);
+
+                        //Crear canal de notificaciones
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+
+                            requestPermissions(new String[]{android.Manifest.permission.POST_NOTIFICATIONS}, 1);
+                            int importancia = NotificationManager.IMPORTANCE_HIGH;
+                            NotificationChannel channel = new NotificationChannel("1", "channel1", importancia);
+
+                            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+                            notificationManager.createNotificationChannel(channel);
+                        }
+
+                        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "1")
+                                .setSmallIcon(R.drawable.baseline_adb_24)
+                                .setContentTitle("Actividad Registrada")
+                                .setContentText("Tu actividad ha sido registrada correctamente.")
+                                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+
+                        NotificationManagerCompat notificacionman = NotificationManagerCompat.from(this);
+                        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+                            requestPermissions(new String[]{android.Manifest.permission.POST_NOTIFICATIONS}, 1);
+                        }
+                        notificacionman.notify(Integer.parseInt("1"), builder.build());
+
+                        finish();
                     } else {
                         Log.e("DB-CONTROLLER:", "No se ha podido guardar");
                         Toast.makeText(this.getApplicationContext(), "No se ha podido guardar!", Toast.LENGTH_SHORT).show();
