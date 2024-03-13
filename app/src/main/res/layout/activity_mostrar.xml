@@ -13,13 +13,27 @@
         android:layout_height="wrap_content"
         android:text="@string/tareas"
         android:textColor="@color/orange"
-        android:textSize="18sp"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.172" />
+        app:layout_constraintTop_toTopOf="@+id/include"
+        app:layout_constraintVertical_bias="0.15" />
+
+    <TextView
+        android:id="@+id/seleccion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/seleccionTarea"
+        android:textColor="@color/orange"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.204"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include"
+        app:layout_constraintVertical_bias="0.15" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/edit_list2"
@@ -30,7 +44,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editlist2"
-        app:layout_constraintVertical_bias="0.304"/>
+        app:layout_constraintVertical_bias="0.4"/>
 
     <Button
         android:id="@+id/descargar"

@@ -13,15 +13,29 @@
         android:id="@+id/editlist"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/tareas"
+        android:text="@string/diasRegistrados"
         android:textColor="@color/orange"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.204"
+        app:layout_constraintHorizontal_bias="0.2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/include"
-        app:layout_constraintVertical_bias="0.377" />
+        app:layout_constraintVertical_bias="0.15" />
+
+    <TextView
+        android:id="@+id/seleccion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/seleccionDia"
+        android:textColor="@color/orange"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include"
+        app:layout_constraintVertical_bias="0.5" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/edit_list"

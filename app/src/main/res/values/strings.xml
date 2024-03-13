@@ -1,6 +1,6 @@
 <resources>
-    <string name="registrar">Registrar</string>
-    <string name="editar">Editar</string>
+    <string name="registrar">Añadir tarea</string>
+    <string name="editar">Mostrar tareas</string>
     <string name="salir">Salir</string>
     <string name="configuracion">Configuracion</string>
     <string name="pantallaPrincipal">Gestor de tareas</string>
@@ -16,11 +16,15 @@
     <string name="castellano">Castellano</string>
     <string name="english">Ingles</string>
     <string name="volver">Volver</string>
-    <string name="web">Ayuda</string>
+    <string name="web">Info</string>
     <string name="app_name">FitFlow</string>
     <string name="fecha">Fecha</string>
     <string name="descargar">Descargar</string>
     <string name="eliminarTarea">Eliminar</string>
-    <string name="oscuro" >Oscuro</string>
-    <string name="claro">Claro</string>
+    <string name="oscuro" >Tema Oscuro</string>
+    <string name="claro">Tema Claro</string>
+    <string name="inicio">Menu de Inicio</string>
+    <string name="diasRegistrados">Dias Registrados</string>
+    <string name="seleccionDia">Selecciona un dia:</string>
+    <string name="seleccionTarea">Seleccione una Tarea para editar:</string>
 </resources>

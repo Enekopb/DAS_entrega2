@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">FitFlow</string>
-    <string name="registrar">Register</string>
-    <string name="editar">Edit</string>
+    <string name="registrar">Add task</string>
+    <string name="editar">Show tasks</string>
     <string name="salir">Get out</string>
     <string name="configuracion">Settings</string>
     <string name="pantallaPrincipal">Gestor de tareas en ingles</string>
@@ -17,11 +17,15 @@
     <string name="castellano">Spanish</string>
     <string name="english">English</string>
     <string name="volver">Return</string>
-    <string name="web">Help</string>
+    <string name="web">Info</string>
     <string name="editarTarea">Edit task</string>
     <string name="fecha">Date</string>
     <string name="descargar">Download</string>
     <string name="eliminarTarea">Delete</string>
-    <string name="oscuro">Dark</string>
-    <string name="claro">Light</string>
+    <string name="oscuro">Dark Theme</string>
+    <string name="claro">Light Theme</string>
+    <string name="inicio">Start Menu</string>
+    <string name="diasRegistrados">Days Registered</string>
+    <string name="seleccionDia">Select a day:</string>
+    <string name="seleccionTarea">Select a Task to edit</string>
 </resources>
