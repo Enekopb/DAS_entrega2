@@ -9,6 +9,7 @@ import android.content.res.Configuration;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,11 +62,11 @@ public class Fragment1 extends Fragment {
                 AlertDialog.Builder alerta = new AlertDialog.Builder(requireActivity());
                 alerta.setMessage("Deseas salir de la aplicación?")
                         .setCancelable(false)
-                        .setPositiveButton("SI", new DialogInterface.OnClickListener() {
+                        .setPositiveButton(Html.fromHtml("<font color='#FFA500'>Aceptar</font>"), new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which){
                                 requireActivity().finish();
                             }
-                        }).setNegativeButton("NO", new DialogInterface.OnClickListener(){
+                        }).setNegativeButton(Html.fromHtml("<font color='#FFA500'>Cancelar</font>"), new DialogInterface.OnClickListener(){
                             public void onClick(DialogInterface dialog, int which){
                                 dialog.cancel();
                             }
