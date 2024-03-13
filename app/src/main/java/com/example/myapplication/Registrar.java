@@ -2,35 +2,28 @@ package com.example.myapplication;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
-import androidx.core.content.ContextCompat;
 
-import java.util.Date;
 
 public class Registrar extends AppCompatActivity {
 
     private EditText fechaInput;
     private EditText tituloInput;
     private EditText descripcionInput;
-    private Button guardar;
     private DBController dbController;
 
     @Override
@@ -47,10 +40,10 @@ public class Registrar extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registrar);
 
-        fechaInput = (EditText) findViewById(R.id.fecha_input);
-        tituloInput = (EditText) findViewById(R.id.titulo_input);
-        descripcionInput = (EditText) findViewById(R.id.desc_input);
-        guardar = (Button) findViewById(R.id.save_button);
+        fechaInput = findViewById(R.id.fecha_input);
+        tituloInput = findViewById(R.id.titulo_input);
+        descripcionInput = findViewById(R.id.desc_input);
+        Button guardar = (Button) findViewById(R.id.save_button);
         dbController = new DBController(this.getApplicationContext());
         SQLiteDatabase db = dbController.getWritableDatabase();
     }

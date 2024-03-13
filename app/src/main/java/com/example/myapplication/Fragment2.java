@@ -12,9 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CompoundButton;
-import android.widget.Switch;
-
 import androidx.fragment.app.Fragment;
 
 import java.util.Locale;
@@ -25,7 +22,6 @@ public class Fragment2 extends Fragment {
     private static final String PREFERENCIAS_TEMA = "config_tema";
     private static final String IDIOMA_PREF_KEY = "idioma";
     private static final String TEMA_PREF_KEY = "tema";
-    private Switch cambio;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -34,13 +30,15 @@ public class Fragment2 extends Fragment {
         View view = inflater.inflate(R.layout.fragment2, container, false);
 
         SharedPreferences sharedPreferences = requireActivity().getSharedPreferences(PREFERENCIAS_TEMA, MODE_PRIVATE);
-        String temaGuardado = sharedPreferences.getString("tema", "DEFAULT");
+        String temaGuardado = sharedPreferences.getString(TEMA_PREF_KEY, "DEFAULT");
 
         // Aplicar el tema correspondiente
         if (temaGuardado.equals("DEFAULT")) {
             requireActivity().setTheme(R.style.AppThemeLight);
+            view.setBackgroundColor(Color.WHITE);
         } else {
             requireActivity().setTheme(R.style.AppThemeDark);
+            view.setBackgroundColor(Color.BLACK);
         }
 
         sharedPreferences = requireActivity().getSharedPreferences("config_idioma", MODE_PRIVATE);
@@ -120,5 +118,6 @@ public class Fragment2 extends Fragment {
             requireActivity().setTheme(R.style.AppThemeDark);
             view.setBackgroundColor(Color.BLACK);
         }
+        requireActivity().recreate();
     }
 }
