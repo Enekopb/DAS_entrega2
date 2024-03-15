@@ -28,15 +28,22 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         if(savedInstanceState == null){
+            SharedPreferences sp = getSharedPreferences("config_tema", MODE_PRIVATE);
+            SharedPreferences.Editor e = sp.edit();
+            e.putString("tema", "DEFAULT");
+            e.apply();
+
             SharedPreferences sharedPreferences = getSharedPreferences("config_idioma", MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putString("idioma", "values");
             editor.apply();
 
-            SharedPreferences sp = getSharedPreferences("config_tema", MODE_PRIVATE);
-            SharedPreferences.Editor e = sp.edit();
-            e.putString("tema", "DEFAULT");
-            e.apply();
+            Locale nuevoLocale = new Locale("values");
+            Locale.setDefault(nuevoLocale);
+            Configuration configuration = getBaseContext().getResources().getConfiguration();
+            configuration.setLocale(nuevoLocale);
+            getResources().updateConfiguration(configuration, getBaseContext().getResources().getDisplayMetrics());
+            recreate();
         }
         setContentView(R.layout.activity_main);
 
