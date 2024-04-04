@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import static android.content.Context.MODE_PRIVATE;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -105,6 +106,23 @@ public class Fragment1 extends Fragment {
             public void onClick(View v) {
                 String url="https://musclewiki.com/";
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                startActivity(intent);
+            }
+        });
+
+        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) Button botonSacarFoto = view.findViewById(R.id.sacarFoto);
+        botonSacarFoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), AnadirFoto.class);
+                startActivity(intent);
+            }
+        });
+        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) Button botonMapa = view.findViewById(R.id.mapa);
+        botonMapa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), Mapa.class);
                 startActivity(intent);
             }
         });

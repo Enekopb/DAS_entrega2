@@ -28,4 +28,10 @@
     <string name="diasRegistrados">Days Registered</string>
     <string name="seleccionDia">Select a day:</string>
     <string name="seleccionTarea">Select a Task to edit</string>
+    <string name="btnCamara">Camera</string>
+    <string name="btnSubirFoto">Upload image</string>
+    <string name="sacarFoto">Take photo</string>
+    <string name="btnCargarFoto">Charge photo</string>
+    <string name="verGimnasios">Map</string>
+    <string name="gymCercanos">Gyms nearby</string>
 </resources>

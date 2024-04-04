@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="16dp">
 
     <EditText
@@ -27,7 +28,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/password_edit_text"
         android:onClick="login"
-        android:text="Login" />
+        android:text="Login"
+        app:backgroundTint="@color/orange"/>
 
     <Button
         android:id="@+id/register_button"
@@ -35,6 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/login_button"
         android:onClick="registrarUsuario"
-        android:text="Registrar" />
+        android:text="Registrar"
+        app:backgroundTint="@color/orange"/>
 
 </RelativeLayout>

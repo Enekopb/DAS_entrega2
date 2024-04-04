@@ -27,4 +27,10 @@
     <string name="diasRegistrados">Dias Registrados</string>
     <string name="seleccionDia">Selecciona un dia:</string>
     <string name="seleccionTarea">Seleccione una Tarea para editar:</string>
+    <string name="btnCamara">Camara</string>
+    <string name="btnSubirFoto">Subir foto</string>
+    <string name="sacarFoto">Sacar foto</string>
+    <string name="btnCargarFoto">Cargar foto</string>
+    <string name="verGimnasios">Mapa</string>
+    <string name="gymCercanos">Gimnasios cerca</string>
 </resources>
