@@ -1,6 +1,8 @@
 package com.example.myapplication;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -44,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
                 public void onResponse(String response) {
                     Log.d("res", response);
                     if (response.equals("success")) {
+                        guardarNombreUsuario(usuario);
                         Intent intent = new Intent(MainActivity.this, MenuInicio.class);
                         startActivity(intent);
                         finish();
@@ -76,5 +79,12 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, RegistrarUsuario.class);
         startActivity(intent);
         finish();
+    }
+
+    private void guardarNombreUsuario(String nombreUsuario) {
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("nombreUsuario", nombreUsuario);
+        editor.apply();
     }
 }

@@ -30,22 +30,7 @@
             android:onClick="subirFoto"
             android:text="@string/btnSubirFoto" />
 
-        <Button
-            android:id="@+id/btnCargarFoto"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="@string/btnCargarFoto" />
-
     </LinearLayout>
-
-    <EditText
-        android:id="@+id/nombreFoto"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:hint="Nombre foto"
-        android:inputType="text" />
 
     <ImageView
         android:id="@+id/imageView"

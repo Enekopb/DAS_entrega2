@@ -43,7 +43,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toEndOf="@+id/web"
-        app:layout_constraintTop_toBottomOf="@+id/editar"
+        app:layout_constraintTop_toBottomOf="@+id/mapa"
         app:layout_constraintVertical_bias="0.3" />
 
     <Button
@@ -57,34 +57,34 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.25"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/registrar"
+        app:layout_constraintTop_toBottomOf="@+id/sacarFoto"
         app:layout_constraintVertical_bias="0.3" />
 
     <Button
         android:id="@+id/sacarFoto"
         android:layout_width="120dp"
-        android:layout_height="60dp"
+        android:layout_height="80dp"
         android:text="@string/sacarFoto"
         app:backgroundTint="@color/orange"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.25"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/salir"
-        app:layout_constraintVertical_bias="0.3" />
+        app:layout_constraintTop_toBottomOf="@+id/registrar"
+        app:layout_constraintVertical_bias="0.2" />
 
     <Button
         android:id="@+id/mapa"
         android:layout_width="120dp"
-        android:layout_height="60dp"
+        android:layout_height="80dp"
         android:text="@string/verGimnasios"
         app:backgroundTint="@color/orange"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toEndOf="@+id/sacarFoto"
-        app:layout_constraintTop_toBottomOf="@+id/salir"
-        app:layout_constraintVertical_bias="0.3" />
+        app:layout_constraintTop_toBottomOf="@+id/editar"
+        app:layout_constraintVertical_bias="0.2" />
 
     <TextView
         android:id="@+id/textView"

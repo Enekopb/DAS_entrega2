@@ -2,21 +2,26 @@ package com.example.myapplication;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.content.ContentResolver;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.CalendarContract;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.Manifest;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
+import androidx.core.content.ContextCompat;
 
 
 public class Registrar extends AppCompatActivity {
@@ -25,6 +30,7 @@ public class Registrar extends AppCompatActivity {
     private EditText tituloInput;
     private EditText descripcionInput;
     private DBController dbController;
+    private static final int MY_PERMISSIONS_REQUEST_WRITE_CALENDAR = 123;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,6 +101,24 @@ public class Registrar extends AppCompatActivity {
     }
 
     public void volver(View view) {
+        finish();
+    }
+
+    public void empezarEntrenamiento(View view){
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_CALENDAR)
+                != PackageManager.PERMISSION_GRANTED) {
+            // Si el permiso no está concedido, solicitarlo al usuario
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.WRITE_CALENDAR},
+                    MY_PERMISSIONS_REQUEST_WRITE_CALENDAR);
+        } else {
+            Intent intent = new Intent(Intent.ACTION_INSERT);
+            intent.setData(CalendarContract.Events.CONTENT_URI);
+            intent.putExtra(CalendarContract.Events.TITLE, "Entrenamiento");
+            intent.putExtra(CalendarContract.Events.DESCRIPTION, "Hora de inicio: "+ String.valueOf(System.currentTimeMillis()));
+            intent.putExtra(CalendarContract.Events.ALL_DAY, "true");
+            startActivity(intent);
+        }
         finish();
     }
 }

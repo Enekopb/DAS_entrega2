@@ -129,8 +129,22 @@
         app:icon="@android:drawable/ic_menu_save"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.064"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/desc_input"
+        app:layout_constraintVertical_bias="0.116" />
+
+    <Button
+        android:id="@+id/empezarEntrenamiento"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:onClick="empezarEntrenamiento"
+        android:text="@string/empEntrenamiento"
+        app:backgroundTint="@color/orange"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/save_button"
         app:layout_constraintTop_toBottomOf="@+id/desc_input"
         app:layout_constraintVertical_bias="0.114" />
 

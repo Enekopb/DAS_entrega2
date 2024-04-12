@@ -34,4 +34,5 @@
     <string name="btnCargarFoto">Charge photo</string>
     <string name="verGimnasios">Map</string>
     <string name="gymCercanos">Gyms nearby</string>
+    <string name="empEntrenamiento">Schedule training</string>
 </resources>
