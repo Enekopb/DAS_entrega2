@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import static androidx.core.app.ActivityCompat.requestPermissions;
 
+import android.annotation.SuppressLint;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -75,6 +76,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         requestQueue.add(stringRequest);
     }
 
+    @SuppressLint("MissingPermission")
     @Override
     public void onMessageReceived(@NonNull RemoteMessage message) {
         if (message.getData().size() > 0) {
@@ -94,9 +96,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
             NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(this);
             if (notificationManagerCompat.areNotificationsEnabled()) {
-                if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
-                    return;
-                }
                 notificationManagerCompat.notify(4, builder.build());
             } else {
                 // Manejar el caso en que no tenemos permiso para mostrar notificaciones

@@ -35,4 +35,8 @@
     <string name="verGimnasios">Map</string>
     <string name="gymCercanos">Gyms nearby</string>
     <string name="empEntrenamiento">Schedule training</string>
+    <string name="appwidget_text">Stay active! Your body will thank you.</string>
+    <string name="add_widget">Add widget</string>
+    <string name="app_widget_description">This is an example</string>
+    <string name="appwidget_text2">Exercise, your health will thank you.</string>
 </resources>

@@ -7,6 +7,8 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.app.AlarmManager;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
@@ -56,10 +58,10 @@ public class MenuInicio extends AppCompatActivity {
             getResources().updateConfiguration(configuration, getBaseContext().getResources().getDisplayMetrics());
             recreate();
 
-            // Configurar la alarma para las 5:00 PM
+            // Configurar la alarma para las 6:00 PM
             Calendar calendar = Calendar.getInstance();
-            calendar.set(Calendar.HOUR_OF_DAY, 17); // Hora en formato de 24 horas
-            calendar.set(Calendar.MINUTE, 10);
+            calendar.set(Calendar.HOUR_OF_DAY, 18); // Hora en formato de 24 horas
+            calendar.set(Calendar.MINUTE, 0);
             calendar.set(Calendar.SECOND, 0);
 
             int flags = PendingIntent.FLAG_UPDATE_CURRENT;
@@ -68,14 +70,24 @@ public class MenuInicio extends AppCompatActivity {
             }
 
             Intent intent = new Intent(this, RecordatorioEjercicio.class);
+            startForegroundService(intent);
             PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, flags);
 
             AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
             alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
 
-            Toast.makeText(this, "Alarma configurada para las 5:00 PM todos los días", Toast.LENGTH_SHORT).show();
-            //FirebaseApp.initializeApp(this);
+            Toast.makeText(this, "Alarma configurada para las 6:00 PM todos los días", Toast.LENGTH_SHORT).show();
             getFCMToken();
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+
+                requestPermissions(new String[]{android.Manifest.permission.POST_NOTIFICATIONS}, 1);
+                int importancia = NotificationManager.IMPORTANCE_HIGH;
+                NotificationChannel channel = new NotificationChannel("1", "channel1", importancia);
+
+                NotificationManager notificationManager = getSystemService(NotificationManager.class);
+                notificationManager.createNotificationChannel(channel);
+            }
         }
 
         setContentView(R.layout.activity_main);

@@ -9,6 +9,7 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -17,14 +18,18 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.tasks.OnSuccessListener;
 
 public class Mapa extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     private static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
     private FusedLocationProviderClient fusedLocationClient;
+    private double miLatitud;
+    private double miLongitud;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,15 +42,6 @@ public class Mapa extends AppCompatActivity implements OnMapReadyCallback {
 
         // Inicializar el cliente de ubicación fusionada
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
-
-        // Solicitar permisos de ubicación si no están concedidos
-        if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                    MY_PERMISSIONS_REQUEST_LOCATION);
-        }
     }
 
     @Override
@@ -67,6 +63,32 @@ public class Mapa extends AppCompatActivity implements OnMapReadyCallback {
 
         // Mover la cámara al primer marcador
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(gimnasio1, 15));
+
+        // Solicitar permisos de ubicación si no están concedidos
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                    MY_PERMISSIONS_REQUEST_LOCATION);
+        }
+
+        fusedLocationClient.getLastLocation().addOnSuccessListener(this, new OnSuccessListener<Location>() {
+            @Override
+            public void onSuccess(Location location) {
+                if (location != null) {
+                    miLatitud = location.getLatitude();
+                    miLongitud = location.getLongitude();
+                    LatLng miUbicacion = new LatLng(miLatitud, miLongitud);
+
+                    // Personalizar el icono del marcador
+                    mMap.addMarker(new MarkerOptions().position(miUbicacion).title("Mi ubicación").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
+
+                } else {
+                    Log.d("maps", "Posicion desconocida");
+                }
+            }
+        });
 
         // Habilitar la capa de mi ubicación
         if (ContextCompat.checkSelfPermission(this,

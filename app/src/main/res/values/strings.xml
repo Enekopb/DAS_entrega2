@@ -21,7 +21,7 @@
     <string name="fecha">Fecha</string>
     <string name="descargar">Descargar</string>
     <string name="eliminarTarea">Eliminar</string>
-    <string name="oscuro" >Tema Oscuro</string>
+    <string name="oscuro">Tema Oscuro</string>
     <string name="claro">Tema Claro</string>
     <string name="inicio">Menu de Inicio</string>
     <string name="diasRegistrados">Dias Registrados</string>
@@ -34,4 +34,8 @@
     <string name="verGimnasios">Mapa</string>
     <string name="gymCercanos">Gimnasios cerca</string>
     <string name="empEntrenamiento">Apuntar entrenamiento</string>
+    <string name="appwidget_text">¡Mantente activo! Tu cuerpo te lo agradecerá.</string>
+    <string name="add_widget">Add widget</string>
+    <string name="app_widget_description">Esto es un ejemplo</string>
+    <string name="appwidget_text2">Haz ejercicio, tu salud te lo agradecerá.</string>
 </resources>

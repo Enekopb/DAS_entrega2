@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         usuario = contrasena = "";
         etUsuario = findViewById(R.id.username_edit_text);
         etContrasena = findViewById(R.id.password_edit_text);
+        Log.d("eneko", String.valueOf(R.string.appwidget_text));
     }
 
     public void login(View view) {
