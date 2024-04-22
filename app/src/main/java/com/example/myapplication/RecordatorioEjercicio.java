@@ -1,23 +1,46 @@
 package com.example.myapplication;
 
-import android.Manifest;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.appwidget.AppWidgetManager;
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.os.Build;
-import android.widget.Toast;
+import android.util.Log;
+import android.widget.RemoteViews;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
+import com.example.myapplication.R;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 public class RecordatorioEjercicio extends BroadcastReceiver {
+    private static boolean alternar = false; // Variable de estado para alternar entre las frases
+
     @Override
     public void onReceive(Context context, Intent intent) {
-        Toast.makeText(context, "Alarm went off", Toast.LENGTH_SHORT).show();
+        Log.d("eneko", "entrauOnReceiveAlarm");
+        RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.primer_widget);
+
+        // Obtener las frases
+        String frase1 = "¡Mantente activo! Tu cuerpo te lo agradecerá.";
+        String frase2 = "Haz ejercicio, tu salud te lo agradecerá.";
+
+        // Alternar entre las frases
+        String fraseMostrar = alternar ? frase2 : frase1;
+        alternar = !alternar; // Cambiar el estado para la próxima llamada
+
+        // Actualizar el widget con la frase actual
+        remoteViews.setTextViewText(R.id.appwidget_text, fraseMostrar);
+
+        // Actualizar el widget
+        ComponentName tipowidget = new ComponentName(context, PrimerWidget.class);
+        AppWidgetManager manager = AppWidgetManager.getInstance(context);
+        manager.updateAppWidget(tipowidget, remoteViews);
     }
 }
+

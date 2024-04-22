@@ -3,6 +3,8 @@ package com.example.myapplication;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
@@ -17,6 +19,7 @@ import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -29,12 +32,14 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 public class MenuInicio extends AppCompatActivity {
 
     private Fragment fragment1, fragment2;
     private FrameLayout container;
+    private PendingIntent pendingIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,25 +63,6 @@ public class MenuInicio extends AppCompatActivity {
             getResources().updateConfiguration(configuration, getBaseContext().getResources().getDisplayMetrics());
             recreate();
 
-            // Configurar la alarma para las 6:00 PM
-            Calendar calendar = Calendar.getInstance();
-            calendar.set(Calendar.HOUR_OF_DAY, 18); // Hora en formato de 24 horas
-            calendar.set(Calendar.MINUTE, 0);
-            calendar.set(Calendar.SECOND, 0);
-
-            int flags = PendingIntent.FLAG_UPDATE_CURRENT;
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-                flags |= PendingIntent.FLAG_IMMUTABLE;
-            }
-
-            Intent intent = new Intent(this, RecordatorioEjercicio.class);
-            startForegroundService(intent);
-            PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, flags);
-
-            AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
-
-            Toast.makeText(this, "Alarma configurada para las 6:00 PM todos los días", Toast.LENGTH_SHORT).show();
             getFCMToken();
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -87,6 +73,9 @@ public class MenuInicio extends AppCompatActivity {
 
                 NotificationManager notificationManager = getSystemService(NotificationManager.class);
                 notificationManager.createNotificationChannel(channel);
+            }
+            if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(new String[]{android.Manifest.permission.POST_NOTIFICATIONS}, 1);
             }
         }
 
